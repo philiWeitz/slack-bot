@@ -1,0 +1,73 @@
+[
+    {
+        "nextState": "",
+        "patterns": [
+            "Hi there",
+            "Is anyone there?",
+            "Hey",
+            "Hola",
+            "Hello",
+            "Good day"
+        ],
+        "responses": [
+            "Hi there!"
+        ],
+        "tag": "greeting"
+    },
+    {
+        "nextState": "",
+        "patterns": [
+            "How are you doing?",
+            "How is it going?",
+            "How are you?"
+        ],
+        "responses": [
+            "It's going great! How about you?"
+        ],
+        "tag": "greeting"
+    },
+    {
+        "nextState": "",
+        "patterns": [
+            "I'm fine too, thank you",
+            "I'm good",
+            "I am good",
+            "I am ok",
+            "I'm ok",
+            "I am fine, thank you",
+            "All good",
+            "Its going well"
+        ],
+        "responses": [
+            "That's good to hear!"
+        ],
+        "tag": "greeting"
+    },
+    {
+        "nextState": "",
+        "patterns": [
+            "Bye",
+            "See you later",
+            "Goodbye",
+            "Nice chatting to you, bye",
+            "Till next time"
+        ],
+        "responses": [
+            "See you later!"
+        ],
+        "tag": "goodbye"
+    },
+    {
+        "nextState": "",
+        "patterns": [
+            "What can I do?",
+            "How can you help me?",
+            "What can I type?",
+            "Can you help me?"
+        ],
+        "responses": [
+            "I can do a lot of things for you... :cold_sweat:"
+        ],
+        "tag": "get-help"
+    }
+]

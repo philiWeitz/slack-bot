@@ -1,0 +1,12 @@
+.gcloudignore
+.git
+.gitignore
+.idea
+ignore/
+Readme.md
+
+*service-key*.json
+
+.env
+
+#!include:.gitignore

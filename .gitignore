@@ -1,0 +1,8 @@
+.env
+.idea
+*.h5
+*.pkl
+*service-key*.json
+
+model/
+__pycache__
