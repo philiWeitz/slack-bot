@@ -1,5 +1,6 @@
 import json
 import os
+from http import HTTPStatus
 
 import requests
 import werkzeug
@@ -7,6 +8,7 @@ import werkzeug.datastructures
 from flask import Flask, jsonify, request
 from slack import WebClient
 from slack.signature import SignatureVerifier
+
 from bot.predict import get_bot_response
 
 app = Flask(__name__)
@@ -65,7 +67,7 @@ def slack_deploy_bot_interaction():
     data = json.loads(request.form["payload"])
 
     if data["token"] != os.environ["SLACK_VERIFICATION_TOKEN"]:
-        return "", 200
+        return "", HTTPStatus.UNAUTHORIZED
 
     channel_id = data["channel"]["id"]
     response_url = data["response_url"]
@@ -77,7 +79,7 @@ def slack_deploy_bot_interaction():
         url=response_url,
         json={"text": "That's how you respond to an interaction"},
     )
-    return "", 200
+    return "", HTTPStatus.OK
 
 
 @app.route("/slack_deploy_bot", methods=["POST"])
@@ -86,7 +88,7 @@ def slack_deploy_bot():
         request.data, request.headers
     )
     if not is_valid_signature:
-        return ""
+        return "", HTTPStatus.UNAUTHORIZED
 
     body = json.loads(request.data)
     event = body.get("event", {})
@@ -106,6 +108,7 @@ def slack_deploy_bot():
     return "", 200
 
 
+# Only needed when deploying the bod to GCP
 def slack_bot_main(request):
     with app.app_context():
         headers = werkzeug.datastructures.Headers()
