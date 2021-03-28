@@ -1,5 +1,9 @@
 # Slack bot for deploying data tables to production
 
+This repo is only for understanding how simple chatbot work and how they could 
+be integrated into slack. If you would like to build production ready chatbots, 
+please use an proper tool such as IBM Watson or DialogFlow.
+
 ## Setup
 - Install conda (https://docs.conda.io/en/latest/)
 - Initialize conda environment ```conda create -n ${PWD##*/} python=3.7.6```

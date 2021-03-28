@@ -1,6 +1,7 @@
 [
     {
-        "nextState": "",
+        "extract": [],
+        "nextStates": [],
         "patterns": [
             "Hi there",
             "Is anyone there?",
@@ -15,7 +16,8 @@
         "tag": "greeting"
     },
     {
-        "nextState": "",
+        "extract": [],
+        "nextStates": [],
         "patterns": [
             "How are you doing?",
             "How is it going?",
@@ -27,7 +29,8 @@
         "tag": "greeting"
     },
     {
-        "nextState": "",
+        "extract": [],
+        "nextStates": [],
         "patterns": [
             "I'm fine too, thank you",
             "I'm good",
@@ -44,7 +47,8 @@
         "tag": "greeting"
     },
     {
-        "nextState": "",
+        "extract": [],
+        "nextStates": [],
         "patterns": [
             "Bye",
             "See you later",
@@ -58,7 +62,8 @@
         "tag": "goodbye"
     },
     {
-        "nextState": "",
+        "extract": [],
+        "nextStates": [],
         "patterns": [
             "What can I do?",
             "How can you help me?",
@@ -69,5 +74,63 @@
             "I can do a lot of things for you... :cold_sweat:"
         ],
         "tag": "get-help"
+    },
+    {
+        "extract": [
+            "date"
+        ],
+        "nextStates": [],
+        "patterns": [
+            "How about at",
+            "Lets schedule it at",
+            "The date is ",
+            "We can do it on the",
+            "It will be at",
+            "It will be around"
+        ],
+        "responses": [
+            "I got this date: <date>"
+        ],
+        "tag": "get-date"
+    },
+    {
+        "extract": [
+            "place"
+        ],
+        "nextStates": [],
+        "patterns": [
+            "Lets go to",
+            "You can find it in",
+            "I would like to go to",
+            "We should travel to",
+            "Take the bus to",
+            "Take the train to",
+            "Take the car to",
+            "Take the bike to",
+            "You have to go from to",
+            "Show close to",
+            "Get around",
+            "Find around",
+            "Find close to"
+        ],
+        "responses": [
+            "I got this place/s: <place>"
+        ],
+        "tag": "get-place"
+    },
+    {
+        "extract": [
+            "number"
+        ],
+        "nextStates": [],
+        "patterns": [
+            "I take",
+            "I buy",
+            "Give me"
+        ],
+        "responses": [
+            "I got this number/s: <number>"
+        ],
+        "tag": "get-number"
     }
 ]

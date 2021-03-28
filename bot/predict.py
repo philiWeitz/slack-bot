@@ -9,6 +9,7 @@ import spacy
 from keras.models import load_model
 from pydash import chain, is_empty, reject
 
+from bot.extractor import get_date, get_numbers, get_places
 from bot.train import lemmatize_sentence, sentence_to_feature_vector
 
 NLP_FOLDER = pathlib.Path(__file__).parent.absolute()
@@ -27,7 +28,7 @@ MINIMUM_THRESHOLD = 0.7
 NO_INTENT_DETECTED_ANSWER = {
     "answer": "Sorry, I didn't understand you.",
     "intent": "no-intent",
-    "nextState": "",
+    "nextStates": [],
 }
 
 
@@ -71,23 +72,26 @@ def get_bot_response(text):
         random.choice(intents_json[idx]["responses"]) for idx in largest_index
     ]
 
+    for idx in largest_index:
+        if "date" in intents_json[idx]["extract"]:
+            extracted_date = get_date(sentences[-1])
+            answers[-1] = answers[-1].replace("<date>", str(extracted_date))
+        if "place" in intents_json[idx]["extract"]:
+            extracted_places = get_places(sentences[-1], nlp)
+            answers[-1] = answers[-1].replace(
+                "<place>", ",".join(extracted_places)
+            )
+        if "number" in intents_json[idx]["extract"]:
+            extracted_numbers = get_numbers(sentences[-1])
+            answers[-1] = answers[-1].replace(
+                "<number>", ",".join(extracted_numbers)
+            )
+
     return {
         "answer": " ".join(answers),
         "intent": intents_json[largest_index[-1]]["tag"],
-        "nextState": intents_json[largest_index[-1]]["nextState"],
+        "nextStates": intents_json[largest_index[-1]]["nextStates"],
     }
 
 
-# print(get_response("Hello!"))
-# print(get_response("How are you?"))
-# print(get_response("Hello! How are you?"))
-# print(get_response("I'm ok"))
-# print(get_response("See you later alligator"))
-# print(get_response("Hello! See you later alligator"))
-#
-#
-# print(get_response("Hello! How are you?"))
-# print(get_response("I'm ooooookkkkk"))
-# print(get_response("So what can I do?"))
-# print(get_response("See you later alligator"))
-# print(get_response("It's raining"))
+print(get_bot_response("I take 10"))
